@@ -1,0 +1,21 @@
+.quoteBox {
+  text-align: center;
+  background-color: #aaa;
+  margin: 40px 20px 20px 20px;
+  padding: 10px 10px 10px 10px;
+}
+.quote {
+  color: #a21;
+  padding: 50px;
+
+}
+#newAuthor {
+  color: #340;
+  font-family: serif;
+
+}
+
+#newQuote {
+  color: #340;
+  font-family: serif;
+}

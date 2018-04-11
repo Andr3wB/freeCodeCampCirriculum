@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang ="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <title>Random Quote Generator</title>
+    <link rel="stylesheet" href="quoteStyle.css">
+
+  </head>
+  <body>
+    <div class = "quoteBox">
+      <h1>Random Quote Generator</h1>
+      <div class = "quote">
+        <form id="quote-container" class="quote-container">
+          <button id="quote-btn">New Quote</button>
+        </form>
+        <h2 id="generalQuote">Quote: <span id="newQuote"></span></h2>
+        <h3 id="author">Quote Author: <span id="newAuthor"></span></h3>
+        <a class="twitter-share-button" href='https://twitter.com/intent/tweet?hashtags=bestquotes&text=' target='_blank'><button id="tweet-btn">Tweet This Quote</button></a>
+      </div>
+    </div>
+    <script src="jquery.min.js"></script>
+    <script src="quoteLib.js"></script>
+  </body>
+</html>

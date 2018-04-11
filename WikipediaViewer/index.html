@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang ="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <title>Wikipedia Viewer</title>
+    <link rel="stylesheet" href="wikiStyle.css">
+  </head>
+  <body>
+    <div class = "wikiBox">
+      <form id="form-container" class="form-container">
+          <label for="searchTopic">Search Topic: </label><input type="text" id="searchTopic" value="">
+          <button id="submitBtn">Submit</button>
+      </form>
+      <h1 id='title'>Here's some news related to: <span id="topic"></span></h1>
+      <div class = "display">
+        <form action="https://en.wikipedia.org/wiki/Special:Random" target="_blank">
+        <div id="random-topic">
+          <button id='randomTopic'>Give Me a Random Topic!</button>
+        </div>
+        </form>
+        <h2 id="wikiValue"></h2>
+        <h3 id="wikiIcon"></h3>
+      </div>
+    </div>
+    <script src="jquery.min.js"></script>
+    <script src="wikiScript.js"></script>
+  </body>
+</html>

@@ -1,0 +1,22 @@
+.twitchBox {
+  text-align: center;
+  background-color: #aaa;
+  margin: 40px 20px 20px 20px;
+  padding: 10px 10px 10px 10px;
+}
+.title {
+  color: #a21;
+  padding: 50px;
+
+}
+
+li {
+  border-width: 3px;
+  border-color: black;
+  border-style: solid;
+  padding-top: 20px;
+}
+
+.sadText {
+  color: red;
+}

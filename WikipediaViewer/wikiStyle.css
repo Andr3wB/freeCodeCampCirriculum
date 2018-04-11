@@ -1,0 +1,15 @@
+.wikiBox {
+  text-align: center;
+  background-color: #aaa;
+  margin: 40px 20px 20px 20px;
+  padding: 10px 10px 10px 10px;
+}
+.title {
+  color: #a21;
+  padding: 50px;
+
+}
+#submitBtn {
+  color: #340;
+  font-family: serif;
+}
