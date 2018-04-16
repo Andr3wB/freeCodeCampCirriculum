@@ -1,6 +1,155 @@
 function loadData() {
 
-  var collection = {
+  //The following problem is in Advanced Algorithm Scripting:
+  //Problem: Exact Change
+  //Need to take 3 inputs: price of item, cash used to pay, and an array of cash in the drawer (i.e [[|PENNY", 1.01], ["NICKLE", 2.05]])
+  //*extra detail 1: Must return "Unsufficient Funds" is cash in drawer is less than the change due, or return "Closed" if the cash in the drawer is equal to the change due.
+  //*extra detail 2: If details in 1 are not met, then return change in an array (of the same form as input array), in the "highest-to-lowest" bill order.
+  //My Answer (with console.log debugging) is below, best answer is shown blelow my answer:
+
+  function checkCashRegister(price, cash, cid) {
+
+    var valObj = cid.reduce(function(acc, curr) {
+      acc[curr[0]] = curr[1]
+      return acc
+    }, {});
+
+    //Added "*100/100" to remove rounding errors
+    var changeInDrawer = Object.values(valObj).reduce(function(acc1, curr1) {
+      return acc1 + curr1;
+    })*100/100;
+
+    var billsInDrawer = Object.keys(valObj).reduce(function(acc1, curr1, index) {
+      switch (curr1) {
+        case "PENNY": acc1[index] = 0.01; return acc1;
+        case "NICKEL": acc1[index] = 0.05; return acc1;
+        case "DIME": acc1[index] = 0.10; return acc1;
+        case "QUARTER": acc1[index] = 0.25; return acc1;
+        case "ONE": acc1[index] = 1; return acc1;
+        case "FIVE": acc1[index] = 5; return acc1;
+        case "TEN": acc1[index] = 10; return acc1;
+        case "TWENTY": acc1[index] = 20; return acc1;
+        case "ONE HUNDRED": acc1[index] = 100; return acc1;
+      }
+
+    }, []).reverse();
+
+    var changeBack = cash - price;
+
+    if (changeInDrawer < changeBack) {
+      return "Unsufficient Funds";
+    } else if (changeInDrawer == changeBack) {
+      return "Closed";
+    } else {
+      var changeArr = [];
+      //Divide changeBack by each dividing amount in array, use Math.floor to return multiple of that bill.
+      for (var i = 0; i < billsInDrawer.length; i++) {
+        var billMultiple = Math.floor(changeBack/billsInDrawer[i]);
+
+      }
+
+
+      return changeArr;
+    }
+
+    console.log(billsInDrawer);
+    console.log(changeBack);
+    console.log(Object.values(valObj));
+    console.log(changeInDrawer);
+    console.log(valObj);
+  }
+
+  checkCashRegister(19.50, 20.00, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.10], ["QUARTER", 4.25], ["ONE", 90.00], ["FIVE", 55.00], ["TEN", 20.00], ["TWENTY", 60.00], ["ONE HUNDRED", 100.00]]);
+
+
+//The following problem is in Advanced Algorithm Scripting:
+//Problem: Symmetric Differece
+//Need to take two or more arrays and return an array of the symmetric difference of the provided arrays (dissimilar values)
+//*extra detail 1: cannot accept duplicate values in array(s)
+//*extra detail 2: Resulting symmetric difference array is compared to subsequent arrays provided to initial argument - i.e. the final result may contain values held within early arrays of input.
+//My Answer (with console.log debugging) is below, best answer is shown blelow my answer:
+  /*function sym(args) {
+
+  var newArr = arguments[0].reduce(function (acc, curr) {
+    if (acc.indexOf(curr) == -1) {
+      acc.push(curr);
+    }
+    return acc;
+    }, []
+  );
+  console.log("stripped newArr of duplicates");
+
+  var i = 1;
+  var recursion = arguments.length;
+  var args1 = Array.prototype.slice.call(arguments);
+
+  function checkTwo(first, second) {
+    if (recursion === 1) {
+      console.log("exiting recursive function");
+      console.log(newArr);
+      return newArr;
+    }
+    second = second.reduce(function (acc, curr) {
+      if (acc.indexOf(curr) == -1) {
+        acc.push(curr);
+      }
+      return acc;
+      }, []
+    );
+    console.log("entered recursive function");
+    console.log("argument 1 (newArr):    " + first);
+    console.log("argument 2:    " + second);
+    for (var j = 0; j < second.length; j++) {
+      if (!first.includes(second[j])) {
+        console.log("pushed " + second[j]);
+        newArr.push(second[j]);
+        console.log(newArr);
+      } else {
+        console.log("pulled " + second[j]);
+        newArr.splice(first.indexOf(second[j]), 1);
+        console.log(newArr);
+      }
+    }
+
+    i++;
+    recursion --;
+    return checkTwo(newArr, args1[i]);
+
+  }
+
+  console.log(checkTwo(newArr, args1[i]));
+
+}*/
+
+  /*Best answer:
+  function sym(args) {
+  return Array.from(arguments) \
+         .reduce((a,b)=>a.concat(b).filter(el=>(a.indexOf(el)==-1||b.indexOf(el)==-1),[])) \
+         .filter((el,index,array)=> array.indexOf(el)==index);
+  }*/
+
+  /*Another good answer:
+  function sym() {
+  // difference between set A and set B
+  const diff = (A, B) => new Set([...A].filter(n => !B.has(n)));
+  // spread operator to convert array like object to array
+  const result = [...arguments]
+    // map elements in arguments (array) to Set
+    .map(arr => new Set(arr))
+    // using the formula in https://en.wikipedia.org/wiki/Symmetric_difference
+    // i reduce it by uniting the diff(A, B) and diff(B, A)
+    .reduce((acc, set) => new Set([...diff(acc, set), ...diff(set, acc)]));
+
+  // convert the set to array by using spread operator again
+  return [...result];
+  }*/
+
+
+  //sym([1, 1, 2, 5], [2, 2, 3, 5], [3, 4, 5, 5]);
+
+
+
+  /*var collection = {
     "2548": {
       "album": "Slippery When Wet",
       "artist": "Bon Jovi",
@@ -52,7 +201,7 @@ function loadData() {
     return collection;
   }
 
-  updateRecords(1245, "tracks", "Addicted to Love");
+  updateRecords(1245, "tracks", "Addicted to Love");*/
 
 
   /*function telephoneCheck(str) {
