@@ -1,15 +1,158 @@
 function loadData() {
 
   //The following problem is in Advanced Algorithm Scripting:
+  //Problem: Pairwise
+  //E
+  //*extra detail 1:
+  //*extra detail 2:
+  //My Answer (with console.log debugging) is below, best answer is shown blelow my answer:
+
+  /*function pairwise(arr, arg) {
+
+    var usedIndex = [];
+
+    var newSum = arr.reduce(function(acc, curr, index, array) {
+
+      console.log("Entering reduce, Acc, curr, index, array: " + ", " + acc + ", " + curr + ", " + index + ", " + array);
+      console.log(usedIndex);
+
+      if (!usedIndex.includes(index)) {
+        var usedVal = [];
+        for (var i = index + 1; i < arr.length; i++) {
+          if ((curr + array[i] == arg) && !usedIndex.includes(i) && !usedVal.includes(array[i])) {
+            acc += (index + i);
+            usedIndex.push(i);
+            usedVal.push(array[i]);
+          }
+        }
+      }
+
+      usedIndex.push(index);
+      return acc;
+
+    }, 0 );
+
+    console.log(newSum);
+    return newSum;
+
+  }
+
+  pairwise([1, 1, 1], 2);*/
+
+  function permAlone(str) {
+
+    var arr = str.split("");
+    var arrCopy = [];
+    var newArr = [];
+    var newReg = /(\w){2,}/;
+    var total = 0;
+
+    function sweepThrough(arr1) {
+
+      for (var i = 0; i < arr1.length; i++) {
+        console.log(arr1);
+        console.log(arr);
+
+        //If begining of the recursion, re-establish arrCopy.
+        if (arr1.length == arr.length) {
+          arrCopy = str.split("");
+          console.log("entering recursion: " + arrCopy)
+        }
+
+        newArr.push(arrCopy[i]);
+        arrCopy.splice(i, 1);
+
+        //If the recursion has reached the end of the string, and there are no double, add 1.
+        if (!newReg.test(newArr.join("")) && arr1.length == 1) {
+          total += 1;
+          console.log("Added to total count: " + total);
+        }
+
+        sweepThrough(arrCopy);
+
+      }
+    }
+
+    sweepThrough(arr);
+
+
+    console.log("Final newArr: " + newArr);
+    console.log("Final arr: " + arr);
+    console.log(total);
+    return total;
+
+  }
+
+
+  permAlone('aab');
+
+  //The following problem is in Advanced Algorithm Scripting:
+  //Problem: Inventory Update
+  //Need to take 2 inputs: 2 arrays. The first array is the existing inventory (i.e. [[21, "bowling Ball"], [2, "Shoes"]]), and the second array is a shipment recieved. Both arrays are 2D arrays, update the first array with the contents recieved in the second array.
+  //*extra detail 1: If an item cannot be found in the first array, add the new item and quantity into the inventory array.
+  //*extra detail 2: The returned array should be in alphabetical order by item.
+  //My Answer (with console.log debugging) is below, best answer is shown blelow my answer:
+
+  /*function updateInventory(arr1, arr2) {
+
+    var newArr1 = arr1.reduce(function(acc, curr, index, arr) {
+      acc[index] = curr[1];
+      return acc;
+    }, []);
+
+    console.log(newArr1);
+
+    for (var i = 0; i < arr2.length; i++) {
+      if (newArr1.includes(arr2[i][1])) {
+        arr1[newArr1.indexOf(arr2[i][1])][0] += arr2[i][0];
+
+      } else {
+        arr1.push(arr2[i]);
+
+      }
+    }
+
+    arr1.sort(function (a, b) {
+      if(a[1].toLowerCase() < b[1].toLowerCase()) {
+        return -1;
+      } else {
+        return 1;
+      }
+
+    });
+    console.log(arr1);
+    return arr1;
+
+  }
+
+
+
+  var curInv = [
+    [21, "Bowling Ball"],
+    [2, "Dirty Sock"],
+    [1, "Hair Pin"],
+    [5, "Microphone"]
+  ];
+
+  var newInv = [
+    [2, "Hair Pin"],
+    [3, "Half-Eaten Apple"],
+    [67, "Bowling Ball"],
+    [7, "Toothpaste"]
+  ];
+
+  updateInventory(curInv, newInv);*/
+
+  //The following problem is in Advanced Algorithm Scripting:
   //Problem: Exact Change
   //Need to take 3 inputs: price of item, cash used to pay, and an array of cash in the drawer (i.e [[|PENNY", 1.01], ["NICKLE", 2.05]])
   //*extra detail 1: Must return "Unsufficient Funds" is cash in drawer is less than the change due, or return "Closed" if the cash in the drawer is equal to the change due.
   //*extra detail 2: If details in 1 are not met, then return change in an array (of the same form as input array), in the "highest-to-lowest" bill order.
   //My Answer (with console.log debugging) is below, best answer is shown blelow my answer:
 
-  function checkCashRegister(price, cash, cid) {
+  /*function checkCashRegister(price, cash, cid) {
 
-    var valObj = cid.reduce(function(acc, curr) {
+    var valObj = cid.reverse().reduce(function(acc, curr) {
       acc[curr[0]] = curr[1]
       return acc
     }, {});
@@ -32,12 +175,18 @@ function loadData() {
         case "ONE HUNDRED": acc1[index] = 100; return acc1;
       }
 
-    }, []).reverse();
+    }, []);
 
     var changeBack = cash - price;
 
+    console.log(billsInDrawer);
+    console.log(changeBack);
+    console.log(Object.values(valObj));
+    console.log(changeInDrawer);
+    console.log(valObj);
+
     if (changeInDrawer < changeBack) {
-      return "Unsufficient Funds";
+      return "Insufficient Funds";
     } else if (changeInDrawer == changeBack) {
       return "Closed";
     } else {
@@ -45,11 +194,31 @@ function loadData() {
       //Divide changeBack by each dividing amount in array, use Math.floor to return multiple of that bill.
       for (var i = 0; i < billsInDrawer.length; i++) {
         var billMultiple = Math.floor(changeBack/billsInDrawer[i]);
+        console.log(billMultiple);
+        if (billMultiple >= 1) {
+          var desiredNum = billMultiple * billsInDrawer[i];
+          console.log("Checking ideal amount to have " + desiredNum);
+          if (desiredNum <= Object.values(valObj)[i]) {
+            changeArr.push([Object.keys(valObj)[i], desiredNum]);
+            console.log("All of the bills fit in change! " + changeArr);
+            changeBack = Math.round((changeBack - desiredNum)*100)/100;
+            console.log("New desired change " + changeBack);
+          } else {
+            changeArr.push([Object.keys(valObj)[i], Object.values(valObj)[i]]);
+            console.log(" Had to get weird change" + changeArr);
+            changeBack = Math.round((changeBack - Object.values(valObj)[i])*100)/100;
+            console.log("New Desired chamge" + changeBack);
+          }
 
+        }
+      }
+      if (changeBack == 0) {
+        console.log("Final Return " + changeArr);
+        return changeArr;
+      } else {
+        return "Insufficient Funds";
       }
 
-
-      return changeArr;
     }
 
     console.log(billsInDrawer);
@@ -59,7 +228,7 @@ function loadData() {
     console.log(valObj);
   }
 
-  checkCashRegister(19.50, 20.00, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.10], ["QUARTER", 4.25], ["ONE", 90.00], ["FIVE", 55.00], ["TEN", 20.00], ["TWENTY", 60.00], ["ONE HUNDRED", 100.00]]);
+  checkCashRegister(3.26, 100.00, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.10], ["QUARTER", 4.25], ["ONE", 90.00], ["FIVE", 55.00], ["TEN", 20.00], ["TWENTY", 60.00], ["ONE HUNDRED", 100.00]]);*/
 
 
 //The following problem is in Advanced Algorithm Scripting:
