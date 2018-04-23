@@ -39,44 +39,83 @@ function loadData() {
 
   pairwise([1, 1, 1], 2);*/
 
-  function permAlone(str) {
+  //The following problem is in Advanced Algorithm Scripting:
+  //Problem: Make a Person
+  //E
+  //*extra detail 1:
+  //*extra detail 2:
+  //My Answer (with console.log debugging) is below, best answer is shown blelow my answer:
+
+  var Person = function (firstAndLast) {
+    this.getFullName = function () {
+      return "";
+    };
+    return firstAndLast;
+  };
+  var bob = new Person('Bob Ross');
+  bob.getFullName();
+
+
+  //The following problem is in Advanced Algorithm Scripting:
+  //Problem: No Repeats Please
+  //E
+  //*extra detail 1:
+  //*extra detail 2:
+  //My Answer (with console.log debugging) is below, best answer is shown blelow my answer:
+
+  /*function permAlone(str) {
 
     var arr = str.split("");
-    var arrCopy = [];
-    var newArr = [];
-    var newReg = /(\w){2,}/;
+    var newReg = /(\w)\1+/;
     var total = 0;
 
-    function sweepThrough(arr1) {
+    function sweepThrough(arr1, arr2) {
+      console.log("<---------Entering Recursive Function--------->")
+      var num = arr1.length;
+      var arrCopy = arr1.join("").split("");
+      var newArr = arr2.join("").split("");
 
-      for (var i = 0; i < arr1.length; i++) {
-        console.log(arr1);
-        console.log(arr);
+      console.log("arr2: " + arr2 + "  ||  arr1: " + arr1 +  "  ||  num: " + num + "  ||  arrCopy (arr1): " + arrCopy + "  || newArr (arr2): " + newArr)
 
+      for (var i = 0; i < num; i++) {
+        console.log("index: " + (i + 1) + "   Out of: " + num);
+        console.log("arr2: " + arr2 + "   arr1: " + arr1);
+
+        newArr = arr2.join("").split("");
+        arrCopy = arr1.join("").split("");
         //If begining of the recursion, re-establish arrCopy.
         if (arr1.length == arr.length) {
+          //console.log("------------------------------------------------------------------------------");
           arrCopy = str.split("");
-          console.log("entering recursion: " + arrCopy)
+          newArr = [];
+          console.log("Resetting arrCopy to top level, and wiping newArr");
         }
 
-        newArr.push(arrCopy[i]);
+        newArr.push(arr1[i]);
         arrCopy.splice(i, 1);
+
+        console.log("newArr: " + newArr + "  ||  arrCopy: " + arrCopy);
 
         //If the recursion has reached the end of the string, and there are no double, add 1.
         if (!newReg.test(newArr.join("")) && arr1.length == 1) {
           total += 1;
           console.log("Added to total count: " + total);
         }
+        console.log(" ");
+        console.log(!newReg.test(newArr.join("")) + "    ||      " + arr1.length);
+        console.log(" ");
+        console.log("xxxxxxxxxx End of sweep xxxxxxxxxxxxxxx");
+        console.log(" ");
 
-        sweepThrough(arrCopy);
+        sweepThrough(arrCopy, newArr);
 
       }
     }
 
-    sweepThrough(arr);
+    sweepThrough(arr, []);
 
 
-    console.log("Final newArr: " + newArr);
+    //console.log("Final newArr: " + newArr);
     console.log("Final arr: " + arr);
     console.log(total);
     return total;
@@ -84,7 +123,7 @@ function loadData() {
   }
 
 
-  permAlone('aab');
+  permAlone('aab');*/
 
   //The following problem is in Advanced Algorithm Scripting:
   //Problem: Inventory Update
