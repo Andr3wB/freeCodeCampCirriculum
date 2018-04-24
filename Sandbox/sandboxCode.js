@@ -54,7 +54,7 @@ function loadData() {
   };
   var bob = new Person('Bob Ross');
   bob.getFullName();
-
+  
 
   //The following problem is in Advanced Algorithm Scripting:
   //Problem: No Repeats Please
