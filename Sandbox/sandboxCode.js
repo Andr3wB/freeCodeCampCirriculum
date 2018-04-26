@@ -47,14 +47,48 @@ function loadData() {
   //My Answer (with console.log debugging) is below, best answer is shown blelow my answer:
 
   var Person = function (firstAndLast) {
-    this.getFullName = function () {
-      return "";
+
+    var fullNameArr = firstAndLast.split(" ");
+    var fullName = fullNameArr.join(" ");
+    var firstName = fullNameArr[0];
+    var lastName = fullNameArr[1];
+
+    this.getFirstName = function () {
+      console.log(firstName);
+      return firstName;
     };
-    return firstAndLast;
+    this.getLastName = function () {
+      console.log(lastName);
+      return lastName;
+    };
+    this.getFullName = function () {
+      console.log(fullName);
+      return fullName;
+    };
+    this.setFirstName = function (name) {
+      fullNameArr[0] = name || "";
+      fullName = fullNameArr.join(" ");
+      firstName = fullNameArr[0];
+      console.log(fullNameArr);
+      console.log(fullName);
+    };
+    this.setLastName = function (name) {
+      fullNameArr[1] = name || "";
+      fullName = fullNameArr.join(" ");
+      lastName = fullNameArr[1];
+    };
+    this.setFullName = function (name) {
+      fullNameArr = name.split(" ") || "";
+      fullName = fullNameArr.join(" ");
+      firstName = fullNameArr[0];
+      lastName = fullNameArr[1];
+    };
   };
+
   var bob = new Person('Bob Ross');
+  bob.setFirstName("tim");
   bob.getFullName();
-  
+
 
   //The following problem is in Advanced Algorithm Scripting:
   //Problem: No Repeats Please
