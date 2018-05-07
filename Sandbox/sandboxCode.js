@@ -40,13 +40,36 @@ function loadData() {
   pairwise([1, 1, 1], 2);*/
 
   //The following problem is in Advanced Algorithm Scripting:
+  //Problem: Map the Debris
+  //E
+  //*extra detail 1:
+  //*extra detail 2:
+  //My Answer (with console.log debugging) is below, best answer is shown blelow my answer:
+
+
+  /*function orbitalPeriod(arr) {
+    var GM = 398600.4418;
+    var earthRadius = 6367.4447;
+
+    for (var i = 0; i < arr.length; i++) {
+      arr[i].orbitalPeriod = Math.round(2*Math.PI*Math.sqrt(Math.pow((arr[i].avgAlt + earthRadius), 3)/GM));
+      delete arr[i].avgAlt;
+    }
+    return arr;
+  }
+
+  orbitalPeriod([{name : "iss", orbitalPeriod: 5557}, {name: "hubble", orbitalPeriod: 5734}, {name: "moon", orbitalPeriod: 2377399}]);*/
+
+
+
+  //The following problem is in Advanced Algorithm Scripting:
   //Problem: Make a Person
   //E
   //*extra detail 1:
   //*extra detail 2:
   //My Answer (with console.log debugging) is below, best answer is shown blelow my answer:
 
-  var Person = function (firstAndLast) {
+  /*var Person = function (firstAndLast) {
 
     var fullNameArr = firstAndLast.split(" ");
     var fullName = fullNameArr.join(" ");
@@ -87,7 +110,7 @@ function loadData() {
 
   var bob = new Person('Bob Ross');
   bob.setFirstName("tim");
-  bob.getFullName();
+  bob.getFullName();*/
 
 
   //The following problem is in Advanced Algorithm Scripting:

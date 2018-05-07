@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang ="en-US">
+  <head>
+    <script></script>
+    <meta charset="utf-8">
+		<title>Simon Game!</title>
+    <link rel="stylesheet" href="simonStyle.css">
+    <script src="simonCode.js"></script>
+  </head>
+  <body>
+    	<div class = "container">
+        <div id= "top" class ="header">
+          <h1 id="titleContent">Simon Game</h1><br>
+        </div>
+
+        <h2 id="results1" class="results"></h2>
+
+        <div id ="content" class = "examples">
+					<div id ="menu" class="menu">
+            <form>Would You Like to Play Classic or Strict Mode?
+              <div>
+                <input type="radio" id="playerC" name="playerEntered" value="classic" checked>
+                <label for="playerC">Classic</label>
+
+                <input type="radio" id="playerS" name="playerEntered" value="strict">
+                <label for="playerS">Strict</label>
+
+                <input type="submit" class="button6" id="submitBtn" value="Start">
+
+                <button type="button" id="resetBtn" class="button7">Reset</button>
+              </div>
+
+            </form>
+          </div>
+          <button id="space1" class="button1"></button>
+          <button id="space2" class="button2"></button>
+          <button id="space3" class="button3"></button>
+          <button id="space4" class="button4"></button>
+          <div id="space5" class="centerTile"></div>
+
+        </div>
+		  	<div id = "contact" class = "footer">
+					<div class = "name1">
+						<div id = "name">Andrew Bieber, PE</div>
+						<div id = "email">abieber@g.clemson.edu</div>
+					</div>
+        </div>
+		 	</div>
+  </body>
+</html>
